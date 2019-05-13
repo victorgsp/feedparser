@@ -26,10 +26,10 @@ router.get('/parsed-feed', async function (req, res, next) {
       var xml = parser.toXml(JSON.stringify(json));
       //console.log("==================>",xml[0]+xml[1]+xml[2]+xml[3]+xml[4]);
       xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + xml;
-      console.log("==================>",xml.substr(0,100));
       res.type('application/xml');
       //res.send("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + xml);
-      res.send(data.replace("</guid>","0</guid>"));
+      let ano = new Date().getFullYear();
+      res.send(data.replace("</guid>",`${ano}</guid>`));
 
       res.json(json);
     } catch (error) {
